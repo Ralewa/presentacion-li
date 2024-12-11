@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inmediatez de la Informática y Redes Sociales</title>
+    <style>
+        /* Estilos CSS */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            text-align: center;
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 2rem;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+        }
+
+        #frase-movimiento {
+            font-size: 1rem;
+            color: #ecf0f1;
+            font-weight: bold;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            animation: moverFrase 10s linear infinite;
+        }
+
+        @keyframes moverFrase {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        #reloj {
+            margin: 1rem auto;
+            width: 120px;
+            height: 120px;
+            background-color: #ecf0f1;
+            border-radius: 50%;
+            border: 5px solid;
+            border-color: gold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        #reloj:after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background-color: #2c3e50;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        main {
+            padding: 2rem;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        section {
+            margin-bottom: 2rem;
+        }
+
+        .intro h2, .resources h2, .live-info h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .resources .links a {
+            display: block;
+            margin: 0.5rem 0;
+            color: #2980b9;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .resources .links a:hover {
+            color: #3498db;
+            text-decoration: underline;
+        }
+
+        button {
+            background-color: #2980b9;
+            color: #fff;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #3498db;
+        }
+
+        #data-display a {
+            display: block;
+            color: #555;
+            margin-top: 0.5rem;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        #data-display a:hover {
+            color: #2980b9;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #2c3e50;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>La Inmediatez de la Informática</h1>
+        <div id="frase-movimiento">Las redes sociales transforman nuestro lenguaje cada segundo...</div>
+        <div id="reloj"></div>
+    </header>
+
+    <main>
+        <section class="intro">
+            <h2>Las Redes Sociales y el Lenguaje</h2>
+            <p>Las redes sociales han transformado el lenguaje con una inmediatez sin precedentes. Fenómenos como los hashtags, abreviaturas y emojis han creado nuevas formas de expresión.</p>
+        </section>
+
+        <section class="resources">
+            <h2>Enlaces Relacionados</h2>
+            <div class="links">
+                <a href="https://es.wikipedia.org/wiki/Redes_sociales" target="_blank">Historia de las Redes Sociales</a>
+                <a href="https://blog.google/products/search/language-and-social-media/" target="_blank">Impacto de las Redes Sociales en el Lenguaje</a>
+                <a href="https://www.bbva.com/es/el-lenguaje-en-las-redes-sociales-como-ha-cambiado-nuestra-forma-de-comunicarnos/" target="_blank">Cómo han cambiado las redes sociales nuestra forma de comunicarnos</a>
+            </div>
+        </section>
+
+        <section class="live-info">
+            <h2>Datos en Tiempo Real</h2>
+            <button id="fetch-data">Ver Tendencias</button>
+            <div id="data-display"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 - Proyecto sobre Redes Sociales</p>
+    </footer>
+
+    <script>
+        // Mostrar el reloj en tiempo real
+        function actualizarReloj() {
+            const reloj = document.getElementById("reloj");
+            const ahora = new Date();
+            const horas = String(ahora.getHours()).padStart(2, "0");
+            const minutos = String(ahora.getMinutes()).padStart(2, "0");
+            const segundos = String(ahora.getSeconds()).padStart(2, "0");
+            reloj.textContent = `${horas}:${minutos}:${segundos}`;
+        }
+
+        setInterval(actualizarReloj, 1000);
+
+        // Mostrar tendencias al hacer clic
+        document.getElementById("fetch-data").addEventListener("click", () => {
+            const dataDisplay = document.getElementById("data-display");
+            dataDisplay.textContent = "Cargando datos en tiempo real...";
+            
+            // Simular la inmediatez con datos ficticios
+            setTimeout(() => {
+                const trends = [
+                    { texto: "📈 Tendencia 1: El auge de los emojis", enlace: "https://es.wikipedia.org/wiki/Emoji" },
+                    { texto: "🔥 Tendencia 2: Abreviaturas como 'LOL' y 'OMG'", enlace: "https://www.urbandictionary.com/" },
+                    { texto: "🌍 Tendencia 3: Globalización del lenguaje con hashtags", enlace: "https://twitter.com/explore" }
+                ];
+                dataDisplay.innerHTML = trends
+                    .map(t => `<a href="${t.enlace}" target="_blank">${t.texto}</a>`)
+                    .join("");
+            }, 2000); // Simula un retraso de 2 segundos
+        });
+    </script>
+</body>
+</html>
