@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Carta para Mamá</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(#fff5f7, #ffe6ec);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Georgia', serif;
+    }
+
+    .hearts {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      transform: rotate(45deg);
+      animation: float 10s linear infinite;
+      opacity: 0.5;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(45deg); opacity: 0; }
+      50% { opacity: 0.8; }
+      100% { transform: translateY(-10vh) rotate(45deg); opacity: 0; }
+    }
+
+    .envelope {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      background: #c62828;
+      border-radius: 8px;
+      box-shadow: inset 0 0 20px #a41414, 0 10px 25px rgba(0,0,0,0.2);
+      overflow: hidden;
+      z-index: 1;
+      cursor: pointer;
+    }
+
+    .envelope::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        45deg,
+        rgba(255,255,255,0.05),
+        rgba(255,255,255,0.05) 10px,
+        transparent 10px,
+        transparent 20px
+      );
+    }
+
+    .heart-decor {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+      width: 30px;
+      height: 30px;
+      background: #ffb6c1;
+      z-index: 2;
+      animation: beat 1.5s infinite;
+    }
+
+    .heart-decor::before,
+    .heart-decor::after {
+      content: '';
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: #ffb6c1;
+      border-radius: 50%;
+    }
+
+    .heart-decor::before {
+      top: -15px;
+      left: 0;
+    }
+
+    .heart-decor::after {
+      left: -15px;
+      top: 0;
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: translate(-50%, -50%) rotate(45deg) scale(1); }
+      50% { transform: translate(-50%, -50%) rotate(45deg) scale(1.2); }
+    }
+
+    .flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #b71c1c;
+      clip-path: polygon(0 0, 50% 60%, 100% 0, 100% 100%, 0 100%);
+      transform-origin: top center;
+      z-index: 3;
+      transition: transform 1.5s ease;
+    }
+
+    .card {
+      position: absolute;
+      top: 100%;
+      left: 10px;
+      width: 280px;
+      height: 180px;
+      background: #fff;
+      border: 2px solid #f8c2ce;
+      border-radius: 4px;
+      padding: 1em;
+      box-sizing: border-box;
+      text-align: center;
+      color: #333;
+      z-index: 2;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      overflow-y: auto;
+      transition: transform 1.5s ease;
+    }
+
+    .card h2 {
+      margin: 0;
+      font-size: 1.5em;
+      color: #e91e63;
+    }
+
+    .card p {
+      margin-top: 1em;
+      font-size: 1em;
+      line-height: 1.4;
+    }
+
+    .card::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .card::-webkit-scrollbar-thumb {
+      background-color: #e91e63;
+      border-radius: 3px;
+    }
+
+    .open .flap {
+      transform: rotateX(160deg);
+    }
+
+    .open .card {
+      transform: translateY(-180px);
+    }
+
+    .closed .flap {
+      transform: rotateX(0deg);
+    }
+
+    .closed .card {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+<audio id="music" loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mp3">
+  Tu navegador no soporta audio HTML5.
+</audio>
+
+
+  <div class="hearts">
+    <div class="heart" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="heart" style="left: 30%; animation-delay: 2s;"></div>
+    <div class="heart" style="left: 50%; animation-delay: 4s;"></div>
+    <div class="heart" style="left: 70%; animation-delay: 1s;"></div>
+    <div class="heart" style="left: 85%; animation-delay: 3s;"></div>
+  </div>
+
+  <div class="envelope closed" onclick="toggleEnvelope()">
+    <div class="heart-decor"></div>
+    <div class="flap"></div>
+    <div class="card">
+      <h2>Querida Sñ. Pathy,</h2>
+      <p>
+        En este Día de la Madre, quiero expresarle mi admiración y agradecimiento por ser una persona tan especial.
+        Su amor y dedicación son un ejemplo para todos. Le deseo un día lleno de felicidad y celebración.
+        Que nunca le falten sonrisas, abrazos sinceros y mucho amor.
+        Gracias por inspirarnos cada día.
+        <br><br>Con todo cariño,<br>Yandry
+      </p>
+    </div>
+  </div>
+
+ <script>
+  function toggleEnvelope() {
+    const envelope = document.querySelector('.envelope');
+    envelope.classList.toggle('open');
+    envelope.classList.toggle('closed');
+
+    const audio = document.getElementById('music');
+    if (audio.paused) {
+      audio.play();
+    }
+  }
+</script>
+
+</body>
+</html>
